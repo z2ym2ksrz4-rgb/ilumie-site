@@ -5,6 +5,7 @@ const esc = (s) => String(s ?? "").replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<
 const DAYS = ["Mandag","Tirsdag","Onsdag","Torsdag","Fredag","Lørdag","Søndag"]; const MON = ["jan","feb","mar","apr","maj","jun","jul","aug","sep","okt","nov","dec"];
 const hm = (iso) => new Date(iso).toLocaleTimeString("da-DK", { hour: "2-digit", minute: "2-digit" });
 const CAT = { mini: "Mini (3–6 år)", kids: "Børn", junior: "Junior", adult: "Voksen", mixed: "Junior & Voksen" };
+const ART = (k) => `/llds/art/${k}.jpg`; const CATART = { mini: 3, kids: 3, junior: 1, adult: 4, mixed: 4 }; const pick = (seed, pool) => { let h = 0; for (const c of seed) h = (h * 31 + c.charCodeAt(0)) >>> 0; return pool[h % pool.length]; };
 (async () => {
   const [school] = await q("school", `&slug=eq.${SLUG}`); const sid = school?.id;
   if (school) { const s = school.settings || {}; document.querySelectorAll("[data-contact]").forEach((el) => { el.textContent = s[el.dataset.contact] || ""; }); }
@@ -14,7 +15,7 @@ const CAT = { mini: "Mini (3–6 år)", kids: "Børn", junior: "Junior", adult: 
   const tEl = document.getElementById("teams");
   if (teams.length) {
     const cats = ["mini", "kids", "junior", "adult", "mixed"].filter((c) => teams.some((t) => t.category === c));
-    tEl.innerHTML = cats.map((c) => `<div class="cat"><h3>${CAT[c]}</h3><div class="grid">${teams.filter((t) => t.category === c).map((t) => `<div class="card"><h3>${esc(t.name)}</h3><div class="tiny">${esc(t.style || "")}${t.level ? " · " + esc(t.level) : ""}</div>${t.description ? `<p class="small muted">${esc(t.description)}</p>` : ""}<div>${t.closed ? '<span class="chip gold">Lukket hold – audition</span>' : '<span class="chip">Åbent for tilmelding</span>'}${t.punch_card_open ? '<span class="chip">Klippekort</span>' : ""}</div></div>`).join("")}</div></div>`).join("");
+    tEl.innerHTML = cats.map((c) => `<div class="cat"><h3>${CAT[c]}</h3><div class="grid">${teams.filter((t) => t.category === c).map((t) => `<div class="card team" style="background-image:url(${ART(CATART[t.category] || 1)})"><h3>${esc(t.name)}</h3><div class="tiny">${esc(t.style || "")}${t.level ? " · " + esc(t.level) : ""}</div>${t.description ? `<p class="small muted">${esc(t.description)}</p>` : ""}<div>${t.closed ? '<span class="chip gold">Lukket hold – audition</span>' : '<span class="chip">Åbent for tilmelding</span>'}${t.punch_card_open ? '<span class="chip">Klippekort</span>' : ""}</div></div>`).join("")}</div></div>`).join("");
   } else tEl.innerHTML = '<p class="empty">Holdene for sæsonen er på vej.</p>';
   // timetable
   const sched = await q("public_schedule", f + "&order=starts_at");
@@ -26,7 +27,7 @@ const CAT = { mini: "Mini (3–6 år)", kids: "Børn", junior: "Junior", adult: 
   // events
   const events = await q("public_events", f + "&order=starts_at");
   const eEl = document.getElementById("events");
-  eEl.innerHTML = events.length ? events.map((e) => { const d = new Date(e.starts_at); return `<div class="card event"><div class="date">${d.getDate()}<small>${MON[d.getMonth()]}</small></div><div><h3>${esc(e.title)}</h3><div class="tiny">${{competition:"Konkurrence",show:"Show",workshop:"Workshop",social:"Socialt"}[e.kind] || ""}${e.place ? " · " + esc(e.place) : ""}${e.team_names?.length ? " · " + e.team_names.map(esc).join(", ") : ""}</div>${e.info ? `<p class="small muted">${esc(e.info)}</p>` : ""}</div></div>`; }).join("") : '<p class="empty">Ingen kommende events lige nu.</p>';
+  eEl.innerHTML = events.length ? events.map((e) => { const d = new Date(e.starts_at); return `<div class="card event" style="background-image:url(${ART(pick(e.id, [1,3,5]))})"><div class="date">${d.getDate()}<small>${MON[d.getMonth()]}</small></div><div><h3>${esc(e.title)}</h3><div class="tiny">${{competition:"Konkurrence",show:"Show",workshop:"Workshop",social:"Socialt"}[e.kind] || ""}${e.place ? " · " + esc(e.place) : ""}${e.team_names?.length ? " · " + e.team_names.map(esc).join(", ") : ""}</div>${e.info ? `<p class="small muted">${esc(e.info)}</p>` : ""}</div></div>`; }).join("") : '<p class="empty">Ingen kommende events lige nu.</p>';
   // news
   const posts = await q("public_posts", f + "&order=created_at.desc&limit=4");
   const nEl = document.getElementById("news");
