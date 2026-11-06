@@ -22,7 +22,7 @@ header.top .wrap{display:flex;align-items:center;justify-content:space-between;g
 .logo{display:flex;align-items:center;gap:10px;color:var(--fg)}.logo .mark{height:54px;width:auto;transition:transform .5s var(--ease)}.logo:hover .mark{transform:rotate(-6deg)}
 .pill{display:flex;gap:2px;padding:4px;border:1px solid var(--line);border-radius:999px;background:rgba(10,10,11,.5);backdrop-filter:blur(12px)}
 .pill a{color:var(--muted);padding:9px 16px;font-size:.78rem;letter-spacing:.12em;text-transform:uppercase;border-radius:999px;transition:all .3s}.pill a:hover{color:var(--fg)}.pill a.on{color:#161206;background:linear-gradient(135deg,var(--gold2),var(--gold))}
-.hr{display:flex;align-items:center;gap:8px}
+.hr{display:flex;align-items:center;gap:8px}.langs{display:flex;gap:2px;margin-right:4px}.flag{font-size:1.15rem;line-height:1;padding:6px 5px;border-radius:999px;opacity:.55;transition:opacity .3s,transform .3s;filter:saturate(.8)}.flag:hover{opacity:1;transform:scale(1.1)}.flag.on{opacity:1}
 .btn.sm{padding:11px 18px;font-size:.85rem}
 .burger{display:inline-flex;align-items:center;gap:10px;background:rgba(255,255,255,.04);border:1px solid var(--line2);color:var(--fg);border-radius:999px;padding:10px 16px;font-family:inherit;font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;cursor:pointer;backdrop-filter:blur(8px);position:relative;z-index:60}
 .burger i{display:block;width:18px;height:10px;position:relative}.burger i:before,.burger i:after{content:"";position:absolute;left:0;right:0;height:1.5px;background:currentColor;transition:transform .4s var(--ease),top .4s}.burger i:before{top:0}.burger i:after{top:8px}
