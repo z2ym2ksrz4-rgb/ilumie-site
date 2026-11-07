@@ -93,6 +93,18 @@ section{padding:clamp(64px,9vw,120px) 0;position:relative}section.tight{padding-
 .band{position:relative;min-height:380px;border-radius:32px;overflow:hidden;display:flex;align-items:flex-end;padding:clamp(24px,4vw,44px);isolation:isolate}.band .bg{position:absolute;inset:0;background:center/cover;z-index:-2;transition:transform 2s var(--ease)}.band:hover .bg{transform:scale(1.04)}
 .band:before{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,10,11,.05),rgba(10,10,11,.88));z-index:-1}.band h2{margin:0 0 8px}.band p{max-width:52ch}
 /* holdplan */
+/* web sign-up / buy modal */
+.wm{position:fixed;inset:0;z-index:60;display:none;align-items:flex-end;justify-content:center;background:rgba(0,0,0,.7);backdrop-filter:blur(6px)}.wm.open{display:flex}
+.wm .box{width:100%;max-width:560px;max-height:92dvh;overflow:auto;background:var(--bg2);border:1px solid rgba(201,162,74,.3);border-radius:22px 22px 0 0;padding:22px 22px calc(22px + env(safe-area-inset-bottom));box-shadow:0 -20px 60px -30px rgba(201,162,74,.4)}
+@media(min-width:720px){.wm{align-items:center}.wm .box{border-radius:22px}}
+.wm h3{font-family:var(--display);font-weight:400;font-size:1.8rem;margin:4px 0 14px}.wm label{display:block;margin:0 0 12px;font-size:.82rem;color:var(--muted)}
+.wm input,.wm select,.wm textarea{display:block;width:100%;margin-top:5px;background:var(--card);color:var(--fg);border:1px solid var(--line2);border-radius:12px;padding:11px 12px;font:inherit;font-size:1rem}
+.wm .two{display:grid;grid-template-columns:1fr 1fr;gap:10px}.wm .seg{display:flex;gap:6px;flex-wrap:wrap;margin-top:6px}.wm .seg button{background:var(--card);border:1px solid var(--line2);color:var(--fg);border-radius:999px;padding:8px 14px;font:inherit;font-size:.9rem;cursor:pointer}.wm .seg button.on{border-color:var(--gold);color:var(--gold2);background:var(--gold-soft)}
+.wm .err{color:#e08a8a;font-size:.9rem;margin:6px 0}.wm .btn{width:100%;justify-content:center;margin-top:6px}.wm .x{float:right;background:none;border:0;color:var(--muted);font-size:1.6rem;line-height:1;cursor:pointer}
+.wm .pay{text-align:center}.wm .pay .amt{font-family:var(--display);font-size:3rem;color:var(--gold2);line-height:1;margin:8px 0}.wm .pay .ref{font-size:1.1rem;background:var(--card);border:1px dashed var(--line2);border-radius:12px;padding:10px;margin:10px 0}
+.wm .qty{display:flex;align-items:center;gap:10px}.wm .qty button{width:38px;height:38px;border-radius:50%;border:1px solid var(--line2);background:var(--card);color:var(--fg);font-size:1.2rem;cursor:pointer}
+.prod .buy{margin-top:10px}.prod .buy .btn{padding:9px 16px;font-size:.85rem}
+
 .bar{position:sticky;top:64px;z-index:20;background:rgba(10,10,11,.8);backdrop-filter:blur(14px);border:1px solid var(--line);border-radius:999px;padding:6px;display:flex;gap:4px;overflow-x:auto;scrollbar-width:none;margin:0 0 28px}.bar::-webkit-scrollbar{display:none}
 .bar button{flex:1 0 auto;background:none;border:0;color:var(--muted);border-radius:999px;padding:11px 20px;font-family:inherit;font-size:.9rem;cursor:pointer;transition:all .3s;white-space:nowrap}.bar button.on{color:#161206;background:linear-gradient(135deg,var(--gold2),var(--gold))}
 .day{display:none}.day.on{display:grid;grid-template-columns:1fr 1fr;gap:28px}@media(max-width:760px){.day.on{grid-template-columns:1fr}}
