@@ -122,6 +122,12 @@ section{padding:clamp(64px,9vw,120px) 0;position:relative}section.tight{padding-
 .gal .dots{display:flex;justify-content:center;gap:6px;margin-top:12px}.gal .dots i{width:6px;height:6px;border-radius:50%;background:var(--fg3);transition:all .3s}.gal .dots i.on{background:var(--gold2);width:18px;border-radius:3px}
 .pay .qr{width:168px;height:168px;margin:14px auto 6px;padding:10px;background:#fff;border-radius:14px}.pay .qr svg{width:100%;height:100%;display:block}
 .evnext{grid-column:1/-1;position:relative;min-height:340px;border-radius:26px;overflow:hidden;background-size:cover;background-position:center;border:1px solid rgba(201,162,74,.3);display:flex;align-items:flex-end}.evnext::before{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,10,12,0) 0%,rgba(10,10,12,.55) 40%,rgba(10,10,12,.97) 75%)}.evnext-in{position:relative;padding:28px 26px 26px;max-width:620px}.evnext-in h3{font-size:clamp(28px,5vw,42px);margin:6px 0 8px;line-height:1.05}.evnext-in .btn{margin-top:16px}
+.hent{display:grid;gap:34px;grid-template-columns:1fr;align-items:start}@media(min-width:900px){.hent{grid-template-columns:1.4fr .8fr}}
+.hent-ios,.hent-android,.hent-web{margin-top:22px;padding-top:18px;border-top:1px solid rgba(201,162,74,.18)}.hent .eyebrow{margin-bottom:10px}.hent .tiny{margin-top:10px}
+.hent-qr{text-align:center;padding:26px}.hent-qr .qr{width:200px;height:200px;margin:14px auto 10px;padding:12px;background:#fff;border-radius:16px}.hent-qr .qr svg{width:100%;height:100%;display:block}
+@media(max-width:899px){.hent-qr{display:none}}
+.hent-ios,.hent-android,.hent-web{display:none}html[data-os=ios] .hent-ios,html[data-os=android] .hent-android,html[data-os=desktop] .hent-web,html[data-os=desktop] .hent-ios,html[data-os=desktop] .hent-android{display:block}
+.btn.hbtn{white-space:nowrap}
 .bar{position:sticky;top:64px;z-index:20;background:rgba(10,10,11,.8);backdrop-filter:blur(14px);border:1px solid var(--line);border-radius:999px;padding:6px;display:flex;gap:4px;overflow-x:auto;scrollbar-width:none;margin:0 0 28px}.bar::-webkit-scrollbar{display:none}
 .bar button{flex:1 0 auto;background:none;border:0;color:var(--muted);border-radius:999px;padding:11px 20px;font-family:inherit;font-size:.9rem;cursor:pointer;transition:all .3s;white-space:nowrap}.bar button.on{color:#161206;background:linear-gradient(135deg,var(--gold2),var(--gold))}
 .day{display:none}.day.on{display:grid;grid-template-columns:1fr 1fr;gap:28px}@media(max-width:760px){.day.on{grid-template-columns:1fr}}
