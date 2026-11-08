@@ -95,8 +95,10 @@ section{padding:clamp(64px,9vw,120px) 0;position:relative}section.tight{padding-
 /* holdplan */
 /* web sign-up / buy modal */
 .wm{position:fixed;inset:0;z-index:60;display:none;align-items:flex-end;justify-content:center;background:rgba(0,0,0,.7);backdrop-filter:blur(6px)}.wm.open{display:flex}
-.wm .box{width:100%;max-width:560px;max-height:92dvh;overflow:auto;background:var(--bg2);border:1px solid rgba(201,162,74,.3);border-radius:22px 22px 0 0;padding:22px 22px calc(22px + env(safe-area-inset-bottom));box-shadow:0 -20px 60px -30px rgba(201,162,74,.4)}
-@media(min-width:720px){.wm{align-items:center}.wm .box{border-radius:22px}}
+.wm .box{position:relative;width:100%;max-width:560px;min-height:50dvh;max-height:92dvh;overflow:auto;overscroll-behavior:contain;background:var(--bg2);border:1px solid rgba(201,162,74,.3);border-radius:22px 22px 0 0;padding:6px 22px calc(22px + env(safe-area-inset-bottom));box-shadow:0 -20px 60px -30px rgba(201,162,74,.4);transition:transform .2s ease}
+.wm .grab{position:sticky;top:0;padding:8px 0 10px;touch-action:none;background:var(--bg2);z-index:2}.wm .handle{width:40px;height:4px;border-radius:2px;background:var(--line2);margin:0 auto}
+.wm .xclose{position:absolute;top:10px;right:12px;width:34px;height:34px;border-radius:50%;background:rgba(255,255,255,.06);border:1px solid var(--line2);color:var(--fg);font-size:22px;line-height:1;cursor:pointer;z-index:3}
+@media(min-width:720px){.wm{align-items:center}.wm .box{border-radius:22px;min-height:0;padding-top:22px}.wm .grab{display:none}}
 .wm h3{font-family:var(--display);font-weight:400;font-size:1.8rem;margin:4px 0 14px}.wm label{display:block;margin:0 0 12px;font-size:.82rem;color:var(--muted)}
 .wm input,.wm select,.wm textarea{display:block;width:100%;margin-top:5px;background:var(--card);color:var(--fg);border:1px solid var(--line2);border-radius:12px;padding:11px 12px;font:inherit;font-size:1rem}
 .wm .two{display:grid;grid-template-columns:1fr 1fr;gap:10px}.wm .seg{display:flex;gap:6px;flex-wrap:wrap;margin-top:6px}.wm .seg button{background:var(--card);border:1px solid var(--line2);color:var(--fg);border-radius:999px;padding:8px 14px;font:inherit;font-size:.9rem;cursor:pointer}.wm .seg button.on{border-color:var(--gold);color:var(--gold2);background:var(--gold-soft)}
