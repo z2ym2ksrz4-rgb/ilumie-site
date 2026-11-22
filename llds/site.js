@@ -107,4 +107,9 @@ const auto=()=>{clearInterval(timer);timer=setInterval(()=>{if(document.visibili
 tr.addEventListener("scroll",()=>{const c=tr.scrollLeft+tr.clientWidth/2;let best=0,bd=1e9;[...tr.children].forEach((el,k)=>{const d=Math.abs(el.offsetLeft+el.clientWidth/2-c);if(d<bd){bd=d;best=k}});if(best!==idx){idx=best;dots.querySelectorAll("i").forEach((d,k)=>d.classList.toggle("on",k===idx))}},{passive:true});
 tr.addEventListener("pointerdown",()=>clearInterval(timer));tr.addEventListener("pointerup",auto);dots.querySelectorAll("i").forEach((d,k)=>d.addEventListener("click",()=>{go(k);auto()}))};
 const def=JSON.parse(gal.dataset.default||"[]");render(def);
-q("school",`&slug=eq.${SLUG}`).then(rows=>{const g=rows[0]&&rows[0].appearance&&rows[0].appearance.websiteGallery;if(Array.isArray(g)&&g.length){const l=g.map(resolve).filter(Boolean);if(l.length)render(l)}})}
+q("school",`&slug=eq.${SLUG}`).then(rows=>{const ap=rows[0]&&rows[0].appearance||{};
+// admin overrides from Tilpas appen → Website: texts (plain, keep <em> when the text has none), images and the front-page video
+if(!EN){const tx=ap.texts||{};document.querySelectorAll("[data-txt]").forEach(el=>{const v=tx["site."+el.dataset.txt];if(typeof v==="string"&&v.trim()){const em=el.querySelector("em");const parts=v.split("|");if(parts.length>1&&em){el.innerHTML=esc(parts[0])+" <em>"+esc(parts.slice(1).join("|").trim())+"</em>"}else el.textContent=v}})}
+const ws=ap.website||{};document.querySelectorAll("[data-cz]").forEach(el=>{const v=ws[el.dataset.cz];const u=v?resolve(v):null;if(u)el.style.backgroundImage=`url(${u})`});
+const vid=document.querySelector("[data-cz-video]");if(vid&&ws.video){vid.src=ws.video}
+const g=ap.websiteGallery;if(Array.isArray(g)&&g.length){const l=g.map(resolve).filter(Boolean);if(l.length)render(l)}})}
