@@ -1,0 +1,32 @@
+{
+  "applinks": {
+    "details": [
+      {
+        "appIDs": [
+          "8P7P97T8F3.com.ilumie.llds"
+        ],
+        "components": [
+          {
+            "/": "/llds/app/*",
+            "?": {
+              "web": "1"
+            },
+            "exclude": true,
+            "comment": "Brug appen i browseren"
+          },
+          {
+            "/": "/llds/app/*"
+          },
+          {
+            "/": "/llds/app"
+          }
+        ]
+      }
+    ]
+  },
+  "webcredentials": {
+    "apps": [
+      "8P7P97T8F3.com.ilumie.llds"
+    ]
+  }
+}

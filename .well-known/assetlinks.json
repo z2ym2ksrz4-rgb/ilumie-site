@@ -1,0 +1,14 @@
+[
+  {
+    "relation": [
+      "delegate_permission/common.handle_all_urls"
+    ],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "com.ilumie.llds",
+      "sha256_cert_fingerprints": [
+        "1C:08:72:09:05:63:67:56:48:12:FC:56:1D:6D:BD:50:36:61:2A:0C:92:CF:37:E7:12:3F:EC:3F:41:2E:4B:BD"
+      ]
+    }
+  }
+]
