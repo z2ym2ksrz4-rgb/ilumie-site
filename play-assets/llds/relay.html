@@ -1,0 +1,11 @@
+<!doctype html><meta charset="utf-8"><title>asset relay</title>
+<script>
+// Relays same-origin asset bytes to an opener window (used for App Store Connect uploads, which cannot fetch cross-origin).
+addEventListener("message", async (e) => {
+  if (!e.data || !e.data.file) return;
+  try { const r = await fetch("/play-assets/llds/" + e.data.file + "?v=" + Date.now(), { cache: "reload" }); const buf = await r.arrayBuffer(); e.source.postMessage({ file: e.data.file, buf }, e.origin, [buf]); }
+  catch (err) { e.source.postMessage({ file: e.data.file, error: String(err) }, e.origin); }
+});
+if (window.opener) window.opener.postMessage({ ready: true }, "*");
+document.body && (document.body.textContent = "relay ready");
+</script>
